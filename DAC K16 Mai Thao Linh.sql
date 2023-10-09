@@ -4,9 +4,11 @@ SELECT FORMAT_DATE ( '%Y%m',PARSE_DATE ('%Y%m%d', date) ) as month,
       sum (totals.pageviews) as pageviews,
       sum (totals.transactions) as transactions
 FROM `bigquery-public-data.google_analytics_sample.ga_sessions_2017*` 
-WHERE FORMAT_DATE ( '%m',PARSE_DATE ('%Y%m%d', date) ) in ('01','02','03')
+--WHERE FORMAT_DATE ( '%m',PARSE_DATE ('%Y%m%d', date) ) in ('01','02','03')
+WHERE _TABLE_SUFFIX BETWEEN '0101' AND '0331'
 GROUP BY month
 ORDER BY 1;
+--correct, chỉnh lại chỗ where thoi
 
 -- Query 2
 select trafficSource.`source` as source,
